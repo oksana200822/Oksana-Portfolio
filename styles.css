@@ -275,7 +275,7 @@ ul {
 /* Skills Section */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
 }
 
@@ -403,7 +403,7 @@ ul {
 /* Projects Section */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
 }
 
@@ -672,5 +672,62 @@ ul {
 
     .timeline::after {
         left: 20px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .section {
+        padding: 50px 0;
+    }
+
+    .hero-name {
+        font-size: 2.2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .hero-image {
+        width: 200px;
+        height: 200px;
+        border-width: 5px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        display: block;
+        margin: 10px auto;
+        text-align: center;
+        width: 100%;
+        max-width: 250px;
+    }
+
+    .btn-outline {
+        margin-left: 0;
+    }
+
+    .contact-wrapper {
+        padding: 25px;
+    }
+
+    .timeline-item {
+        padding-left: 35px;
+        padding-right: 0;
+    }
+
+    .timeline::after {
+        left: 10px;
+    }
+
+    .timeline-item::after {
+        left: 2px;
+        width: 14px;
+        height: 14px;
+    }
+    
+    .logo {
+        font-size: 1.2rem;
     }
 }
