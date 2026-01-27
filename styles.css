@@ -602,6 +602,15 @@ ul {
 
 /* Mobile Responsive */
 @media screen and (max-width: 968px) {
+    .nav-container {
+        justify-content: flex-start;
+        gap: 15px; /* Add some gap between items */
+    }
+
+    .logo {
+        margin-right: auto; /* Pushes everything else to the right */
+    }
+
     .hero-container {
         flex-direction: column-reverse;
         /* Image on top on mobile? Or text on top? Usually text on top is better for SEO/UX, but image is engaging. Let's do Image Top for profile portfolios. */
