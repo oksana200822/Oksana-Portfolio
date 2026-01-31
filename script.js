@@ -290,6 +290,70 @@ const observer = new IntersectionObserver((entries, observer) => {
     });
 }, observerOptions);
 
+
 document.querySelectorAll('.fade-in').forEach(section => {
     observer.observe(section);
 });
+
+// Loading Screen
+window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    
+    // Ensure loader stays at least 1s for better UX/Elegance
+    setTimeout(() => {
+        loader.classList.add('loader-hidden');
+        
+        loader.addEventListener('transitionend', () => {
+            if (document.body.contains(loader)) {
+                document.body.removeChild(loader);
+            }
+        });
+    }, 1000);
+});
+
+// Contact Form Handler
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+        const recipient = 'oksanakhoirunnida.10@gmail.com';
+
+        // Construct Content
+        const rawBody = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+        const subject = `Portfolio Contact from ${name}`;
+        
+        // Feedback to user
+        const btn = contactForm.querySelector('button');
+        const originalText = btn.innerText;
+        btn.innerText = "Processing...";
+        btn.style.opacity = "0.7";
+        btn.disabled = true;
+
+        setTimeout(() => {
+            // Check if Desktop/Laptop (Simplified check)
+            const isDesktop = window.innerWidth > 768;
+
+            if (isDesktop) {
+                // Gmail Web Compose URL
+                const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${recipient}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(rawBody)}`;
+                window.open(gmailUrl, '_blank');
+            } else {
+                // Mailto for Mobile
+                const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(rawBody)}`;
+                window.location.href = mailtoLink;
+            }
+            
+            // Reset button and form after a while
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.opacity = "1";
+                btn.disabled = false;
+                contactForm.reset();
+            }, 2000);
+        }, 500);
+    });
+}
